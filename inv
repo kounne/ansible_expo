@@ -1,1 +1,5 @@
-158.160.133.74
+server:
+  hosts:
+    new-server:
+      ansible_host: 158.160.133.74
+      ansible_user: yoishiro
