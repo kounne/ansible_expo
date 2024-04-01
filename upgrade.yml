@@ -1,7 +1,15 @@
 - hosts: all
   become: true
   tasks:
-    - name: install updates
+    - name: install updates for CentOS
+      yum:
+        update_only: yes
+        update_cache: yes
+      changed_when: false
+      when: ansible_distribution == "CentOS"
+    - name: install updates for Ubuntu
       apt:
         upgrade: dist
         update_cache: yes
+      changed_when: false
+      when: ansible_distribution == "Ubuntu"
