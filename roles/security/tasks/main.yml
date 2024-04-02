@@ -1,0 +1,17 @@
+- name: enable permissive SElinux
+  ansible.posix.selinux:
+    state: permissive
+    policy: targeted
+  notify:
+    - restart_selinux
+- name: open custom ports FirewallD
+  ansible.posix.firewalld:
+    port: "{{ item }}"
+    state: enabled
+    permanent: true
+    zone: public
+  loop:
+  - 5601/tcp
+  - 5044/tcp
+  - 9200/tcp
+  notify: restart_firewalld

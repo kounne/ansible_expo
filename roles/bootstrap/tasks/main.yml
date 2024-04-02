@@ -15,11 +15,3 @@
         owner: root
         group: root
         mode: 0440
-    - name: generate ssh config from template
-      template:
-        src: "{{ ssh_template_file }}"
-        dest: /etc/ssh/sshd_config
-        owner: root
-        group: root
-        mode: 0644
-      notify: restart_ssh

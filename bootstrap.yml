@@ -1,4 +1,8 @@
-- hosts: all
+- name: Bootstrap start
+  hosts: 
+    - yandex-server
   become: true
   roles:
-    - bootstrap
+    - name: bootstrap
+    - name: nginx
+    - name: security

@@ -1,15 +1,5 @@
-- hosts: all
+- name: Deploy ELK-stack
+  hosts: yandex-server
   become: true
-  tasks:
-    - name: copy elk-stack
-      copy:
-        src: ~/ELK-stack
-        dest: /home/yoishiro
-        owner: root
-        group: root
-        mode: 0644
-    - name: install elk-stack
-      yum:
-        name: 
-        - /home/yoishiro/ELK-stack/elasticsearch-8.12.2-x86_64.rpm
-        state: present
+  roles: elasticsearch 
+  #kibana, beats

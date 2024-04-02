@@ -1,0 +1,10 @@
+- name: restart_selinux
+  ansible.builtin.systemd:
+    name: selinux
+    state: restarted
+    enabled: true
+- name: restart_firewalld
+  ansible.builtin.systemd:
+    name: firewalld
+    state: restarted
+    enables: true

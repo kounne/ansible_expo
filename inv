@@ -1,4 +1,0 @@
-server:
-  hosts:
-    yandex-server:
-      ansible_host: 158.160.131.51

@@ -1,0 +1,12 @@
+    - name: Copy Elasticsearch
+      copy:
+        src: ~/ELK-stack/elasticsearch-8.12.2-x86_64.rpm
+        dest: /home/yoishiro
+        owner: root
+        group: root
+        mode: 0644
+    - name: Install Elasticsearch
+      ansible.builtin.yum:
+        name: 
+        - /home/yoishiro/ELK-stack/elasticsearch-8.12.2-x86_64.rpm
+        state: present
