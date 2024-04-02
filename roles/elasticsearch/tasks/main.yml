@@ -14,7 +14,26 @@
       template:
         src: elasticsearch.yml.j2
         dest: /etc/elasticsearch/elasticsearch.yml
-    - name: start elasticsearch
-      service:
+        owner: elasticsearch
+        group: elasticsearch
+        mode: 0660
+    - name: reload systemd configuration
+      systemd:
+        daemon_reload: true
+    - name: start elasticsearch service
+      service: 
         name: elasticsearch
-        state: restarted
+        state: started
+        enabled: yes
+    - name: setup password for elasticsearch
+      shell:
+        cmd: echo {{ elasticsearch_password }} | /usr/share/elasticsearch/bin/elasticsearch-reset-password -i -u elastic
+    - name: is cluster alive?
+      uri:
+        url: "http://{{ host_IP }}:9200/_cluster/health"
+        user: "{{ elasticsearch_login }}"
+        password: "{{ elasticsearch_password }}"
+      register: result
+      retries: 5
+      delay: 60
+

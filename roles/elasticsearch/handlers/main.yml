@@ -1,0 +1,5 @@
+- name: restart_elasticsearch
+  ansible.builtin.systemd:
+    name: elasticsearch
+    state: restarted
+    enabled: true
