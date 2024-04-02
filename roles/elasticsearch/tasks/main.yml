@@ -1,12 +1,19 @@
-    - name: Copy Elasticsearch
+    - name: copy elasticsearch
       copy:
-        src: ~/ELK-stack/elasticsearch-8.12.2-x86_64.rpm
-        dest: /home/yoishiro
+        src: elasticsearch-8.11.1-x86_64.rpm
+        dest: /home/kounne/elasticsearch-8.11.1-x86_64.rpm
         owner: root
         group: root
         mode: 0644
-    - name: Install Elasticsearch
+    - name: install elasticsearch
       ansible.builtin.yum:
         name: 
-        - /home/yoishiro/ELK-stack/elasticsearch-8.12.2-x86_64.rpm
+        - /home/kounne/elasticsearch-8.11.1-x86_64.rpm
         state: present
+    - name: generate configuration for elasticsearch
+      template:
+        src: elasticsearch.yml.j2
+        dest: /etc/elasticsearch/elasticsearch.yml
+    - name: change password
+      shell:
+        cmd: echo {{secret_pass}} | /usr/share/elasticsearch/bin/elasticsearch-keystore add

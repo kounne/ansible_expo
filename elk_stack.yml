@@ -1,5 +1,8 @@
 - name: Deploy ELK-stack
-  hosts: yandex-server
+  hosts: 
+    - yandex-server
   become: true
-  roles: elasticsearch 
-  #kibana, beats
+  roles: 
+    - name: elasticsearch 
+  #- name: kibana 
+  #- name: beats
