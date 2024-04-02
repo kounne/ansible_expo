@@ -6,12 +6,12 @@
     - restart_selinux
 - name: open custom ports FirewallD
   ansible.posix.firewalld:
-    port: "{{ item }}"
+    port: "{{ item }}/tcp"
     state: enabled
     permanent: true
     zone: public
-  loop:
-  - 5601/tcp
-  - 5044/tcp
-  - 9200/tcp
+  with_items:
+  - 5601
+  - 5044
+  - 9200
   notify: restart_firewalld

@@ -4,5 +4,7 @@
   become: true
   roles:
     - name: bootstrap
+    - name: python
     - name: nginx
+    - name: firewalld
     - name: security

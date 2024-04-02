@@ -1,0 +1,5 @@
+- name: install python
+  ansible.builtin.yum: 
+    name: python
+    state: latest
+

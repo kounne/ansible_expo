@@ -1,0 +1,9 @@
+- name: install firewalld
+  ansible.builtin.yum: 
+    name: firewalld
+    state: latest
+
+- name: start firewalld
+  service:
+    name: firewalld
+    state: started
