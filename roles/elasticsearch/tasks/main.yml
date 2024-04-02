@@ -14,6 +14,7 @@
       template:
         src: elasticsearch.yml.j2
         dest: /etc/elasticsearch/elasticsearch.yml
-    - name: change password
-      shell:
-        cmd: echo {{secret_pass}} | /usr/share/elasticsearch/bin/elasticsearch-keystore add
+    - name: start elasticsearch
+      service:
+        name: elasticsearch
+        state: restarted

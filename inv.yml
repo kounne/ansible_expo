@@ -3,5 +3,7 @@ all:
     yandex-server:
       ansible_host: "{{ host_IP }}"
   vars:
-    host_IP: 158.160.159.19
-    secret_pass: elastic123
+    host_IP: 158.160.136.147
+    elasticsearch_login: ansible
+    elasticsearch_password: ansible
+
